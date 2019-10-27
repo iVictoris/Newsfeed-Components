@@ -36,7 +36,7 @@ let menuItems = [
 
 // write function to create menu component
 const createMenu = menuArrayItems => {
-  // I made this function in the other task, should just change the file so that I can use it without creating a new function
+  // I made this function in the other task, this one is a slight upgrade
   const createElements = elements => {
     return elements.map(({ className, elementName, textContent }) => {
       const element = document.createElement(elementName);
@@ -60,12 +60,28 @@ const createMenu = menuArrayItems => {
     };
 
     const [li] = createElements([objectToCreate]);
-
     ul.appendChild(li);
   });
 
   menu.appendChild(ul);
-  console.log(menu);
+  
+
+  // Step 3: Using a DOM selector, select the menu button (the element with a class of 'menu-button') currently on the DOM.
+
+  const menuButton = document.querySelector(".menu-button");
+
+  // Step 4: add a click event listener to the menu button. When clicked it should toggle the class 'menu--open' on the menu (your div with a 'menu' class).
+  menuButton.addEventListener("click", ev => {
+    menu.classList.toggle("menu--open");
+  });
+
+  // Step 5: return the menu component.
+  return menu;
 };
 
-createMenu(menuItems);
+// Step 6: add the menu component to the DOM.
+
+const menu = createMenu(menuItems);
+const menuButton = document.querySelector('.menu-button');
+
+menuButton.appendChild(menu);
