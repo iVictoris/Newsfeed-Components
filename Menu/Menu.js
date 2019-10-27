@@ -1,12 +1,12 @@
 /* This is the data we will be using, study it but don't change anything, yet. */
 
 let menuItems = [
-  'Students',
-  'Faculty',
+  "Students",
+  "Faculty",
   "What's New",
-  'Tech Trends',
-  'Music',
-  'Log Out'
+  "Tech Trends",
+  "Music",
+  "Log Out"
 ];
 
 /* 
@@ -33,3 +33,39 @@ let menuItems = [
   Step 6: add the menu component to the DOM.
   
 */
+
+// write function to create menu component
+const createMenu = menuArrayItems => {
+  // I made this function in the other task, should just change the file so that I can use it without creating a new function
+  const createElements = elements => {
+    return elements.map(({ className, elementName, textContent }) => {
+      const element = document.createElement(elementName);
+      element.className = className;
+      element.textContent = textContent;
+
+      return element;
+    });
+  };
+
+  const [menu, ul] = createElements([
+    { className: "menu", elementName: "div" },
+    { className: "", elementName: "ul" }
+  ]);
+
+  menuArrayItems.forEach(menuText => {
+    const objectToCreate = {
+      className: "",
+      elementName: "li",
+      textContent: menuText
+    };
+
+    const [li] = createElements([objectToCreate]);
+
+    ul.appendChild(li);
+  });
+
+  menu.appendChild(ul);
+  console.log(menu);
+};
+
+createMenu(menuItems);
